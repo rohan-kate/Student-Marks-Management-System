@@ -1,0 +1,61 @@
+# Student Marks Management System
+
+students = {}  # Dictionary to store student name and marks
+
+while True:
+    print("\n===== Student Marks Management =====")
+    print("1. Add Student")
+    print("2. Display All Students")
+    print("3. Find Average Marks")
+    print("4. Show Top Student")
+    print("5. Exit")
+
+    try:
+        choice = int(input("Enter your choice: "))
+    except ValueError:
+        print(" Please enter a valid number.")
+        continue
+
+    # Task 2: Add Student
+    if choice == 1:
+        name = input("Enter student name: ").strip()
+        try:
+            marks = float(input("Enter marks: "))
+        except ValueError:
+            print(" Please enter numeric marks.")
+            continue
+        students[name] = marks
+        print(f" Student '{name}' added successfully!")
+
+    # Task 3: Display All Students
+    elif choice == 2:
+        if not students:
+            print(" No student records found!")
+        else:
+            print("\n--- Student Records ---")
+            for name, marks in students.items():
+                print(f"{name} : {marks}")
+
+    # Task 4: Find Average Marks
+    elif choice == 3:
+        if not students:
+            print(" No data to calculate average.")
+        else:
+            avg = sum(students.values()) / len(students)
+            print(f" Average Marks: {avg:.2f}")
+
+    # Task 5: Show Top Student
+    elif choice == 4:
+        if not students:
+            print(" No students available!")
+        else:
+            top_student = max(students, key=students.get)
+            print(f" Top Student: {top_student} ({students[top_student]} Marks)")
+
+    # Task 6: Exit
+    elif choice == 5:
+        print(" Exiting program... Goodbye!")
+        break
+
+    else:
+        print(" Invalid choice! Try again.")
